@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="">
     <head>
         <title>Angular-JS Learning</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!--CSS Files-->
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+
+        <!--JS Files-->
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/angular.min.js" type="text/javascript"></script>
+        <script src="js/script.js" type="text/javascript"></script>
     </head>
-    <body>
+    <body class="container-fluid" style="">
         <div>
-            <div>
-                <h1>Hello World!</h1>
+            <div class="jumbotron">
+                <input type="text" ng-model="name" />
+                <h1>Hello {{ name}}!</h1>
             </div>
         </div>
     </body>
