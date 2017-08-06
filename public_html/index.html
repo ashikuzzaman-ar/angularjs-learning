@@ -19,22 +19,24 @@
     </head>
     <body class="container-fluid" style="">
         <div>
-            <div ng-controller="controllerTest" class="jumbotron">
-                <input ng-model="name" />
-                <table class="table table-hover" border="1">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Tag</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="student in students| filter: name | orderBy:'name'">
-                            <td>{{student.name}}</td>
-                            <td>{{student.tag| uppercase}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div ng-controller="EnableDisableController" class="jumbotron">
+                <h1 class="h1">Enable/Disable Button</h1>
+                <input class="checkbox" type="checkbox" ng-model="enableDisableButton">Disable Button<br/>
+                <button class="btn btn-primary" ng-disabled="enableDisableButton">Click Me!</button>
+            </div>
+
+            <div ng-controller="ShowButtonController" class="jumbotron">
+                <h1 class="h1">Show Button</h1>
+                <input class="checkbox" type="checkbox" ng-model="show">Show Button With The Name Below<br/>
+                <input type="text" ng-model="buttonName" />
+                <button class="btn btn-primary" ng-show="show">{{ buttonName}}</button>
+            </div>
+
+            <div ng-controller="ButtonClickController" class="jumbotron">
+                <h1>Increment/Decrement Test</h1>
+                <h3>Current Value : {{ number}}</h3>
+                <button ng-click="increment();">Increment</button>
+                <button ng-click="decrement();">Decrement</button>
             </div>
         </div>
     </body>

@@ -6,11 +6,24 @@
 
 var app = angular.module('app', []);
 
-app.controller('controllerTest', function controllerTest($scope) {
+app.controller('EnableDisableController', ['$scope', function EnableDisableController(scope) {
 
-    $scope.students = [
-        {'name': 'Mohammad Ashikuzzaman', 'tag': 'Developer'},
-        {'name': 'Ariful Islam Badal', 'tag': 'Navy Officer'},
-        {'name': 'Srijan Mazumder Michael', 'tag': 'Planner'}
-    ];
-});
+        scope.enableDisableButton = false;
+    }]);
+
+app.controller('ShowButtonController', ['$scope', function ShowButtonController(scope) {
+
+        scope.show = false;
+        scope.buttonName = "Click Me!";
+    }]);
+
+app.controller('ButtonClickController', ['$scope', function ButtonClickController(scope) {
+
+        scope.number = 0;
+        scope.increment = function () {
+            scope.number = scope.number + 1;
+        };
+        scope.decrement = function () {
+            scope.number = scope.number - 1;
+        };
+    }]);
