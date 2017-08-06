@@ -21,9 +21,20 @@
         <div>
             <div ng-controller="controllerTest" class="jumbotron">
                 <input ng-model="name" />
-                <ul>
-                    <li ng-repeat="student in students| filter: name | orderBy:'name'">Name: {{student.name| lowercase}} , Tag: {{student.tag| uppercase}}</li>
-                </ul>
+                <table class="table table-hover" border="1">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Tag</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="student in students| filter: name | orderBy:'name'">
+                            <td>{{student.name}}</td>
+                            <td>{{student.tag| uppercase}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </body>
