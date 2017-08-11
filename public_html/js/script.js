@@ -4,16 +4,35 @@
  * and open the template in the editor.
  */
 
-var app = angular.module('app', []);
+var app = angular.module('app', ['ngRoute']);
 
-app.controller('CustomModelTest', ['$scope', '$http', function CustomModelTest(scope, http) {
+app.config(['$routeProvider', function (routeProvider) {
+
+        routeProvider.when('/', {
+            templateUrl: 'home.html'
+        });
+
+        routeProvider.when('/ajax-request', {
+            templateUrl: 'ajax-request.html'
+        });
+
+        routeProvider.otherwise({
+            redirectTo: '/'
+        });
+
+    }]);
+
+app.controller('HomeController', ['$scope', function HomeController(scope) {
+        scope.message = 'This is home page';
+    }]);
+
+app.controller('AJAXRequest', ['$scope', '$http', function AJAXRequest(scope, http) {
 
         scope.posts = [];
 
         scope.load = function () {
 
             scope.posts.fill(null);
-//            var url = 'https://jsonplaceholder.typicode.com/posts';
             var url = 'https://jsonplaceholder.typicode.com/photos';
 
             http.get(url).then(function (response) {
