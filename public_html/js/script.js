@@ -6,16 +6,18 @@
 
 var app = angular.module('app', []);
 
-app.controller('CustomModelTest', ['$scope', function CustomModelTest(scope) {
+app.controller('CustomModelTest', ['$scope', '$http', function CustomModelTest(scope, http) {
 
-        scope.users = [];
-        scope.user = {name: 'Ashik', age: 26, occupation: 'Developer'};
-        scope.saveActivation = false;
-        scope.updateActivation = true;
+        scope.posts = [];
 
-        scope.save = function () {
+        scope.load = function () {
 
-            scope.users.push({name: scope.user.name, age: scope.user.age, occupation: scope.user.occupation});
-            scope.user = null;
+            scope.posts.fill(null);
+//            var url = 'https://jsonplaceholder.typicode.com/posts';
+            var url = 'https://jsonplaceholder.typicode.com/photos';
+
+            http.get(url).then(function (response) {
+                scope.posts = response.data;
+            });
         };
     }]);
