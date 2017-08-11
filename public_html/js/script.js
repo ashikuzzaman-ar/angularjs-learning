@@ -6,6 +6,11 @@
 
 var app = angular.module('app', ['ngRoute']);
 
+app.run(['$rootScope', function (rootScope) {
+
+        rootScope.posts = [];
+    }]);
+
 app.config(['$routeProvider', function (routeProvider) {
 
         routeProvider.when('/', {
@@ -26,17 +31,19 @@ app.controller('HomeController', ['$scope', function HomeController(scope) {
         scope.message = 'This is home page';
     }]);
 
-app.controller('AJAXRequest', ['$scope', '$http', function AJAXRequest(scope, http) {
+app.controller('AJAXRequest', ['$scope', '$http', '$rootScope', function AJAXRequest(scope, http, rootScope) {
 
-        scope.posts = [];
+        scope.posts = rootScope.posts;
 
-        scope.load = function () {
+        if (scope.posts.length === 0) {
 
-            scope.posts.fill(null);
-            var url = 'https://jsonplaceholder.typicode.com/photos';
+            scope.load = function () {
 
-            http.get(url).then(function (response) {
-                scope.posts = response.data;
-            });
-        };
+                var url = 'https://jsonplaceholder.typicode.com/photos';
+                http.get(url).then(function (response) {
+                    scope.posts = response.data;
+                    rootScope.posts = scope.posts;
+                });
+            };
+        }
     }]);
